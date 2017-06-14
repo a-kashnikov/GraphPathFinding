@@ -38,14 +38,23 @@ class NonOrientedGraphTest {
                                                                     {1,0,1,1},
                                                                     {0,1,1,1},
                                                                     {1,1,1,1}});
-        assertEquals("1234", graph.getPathDepth("1", "4"));
-        assertEquals("123", graph.getPathDepth("1", "3"));
+        assertEquals("1-2-3-4", graph.getPathDepth("1", "4"));
+        assertEquals("1-2-3", graph.getPathDepth("1", "3"));
 
         NonOrientedGraph graph1 = new NonOrientedGraph(new int[][]{ {0,1,1,1},
                                                                     {1,0,1,0},
                                                                     {1,1,1,0},
                                                                     {1,0,0,1}});
-        assertEquals("14", graph1.getPathDepth("1", "4"));
-        assertEquals("314", graph1.getPathDepth("3", "4"));
+        assertEquals("1-4", graph1.getPathDepth("1", "4"));
+        assertEquals("3-1-4", graph1.getPathDepth("3", "4"));
+    }
+
+    @Test
+    void getPathWidthTest() throws AdjacentMatrixCreationExeption {
+        NonOrientedGraph graph = new NonOrientedGraph(new int[][]{  {0,1,0,1},
+                                                                    {1,0,1,1},
+                                                                    {0,1,1,1},
+                                                                    {1,1,1,1}});
+        assertEquals("1-4", graph.getPathWidth("1", "4"));
     }
 }

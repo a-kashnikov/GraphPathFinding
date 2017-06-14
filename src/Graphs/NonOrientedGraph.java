@@ -4,6 +4,8 @@ import Exeptions.AdjacentMatrixCreationExeption;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -81,9 +83,9 @@ public class NonOrientedGraph extends Graph {
                 if (adjacentMatrix[track.peek()][i] == 1 && nodes.get(i).getBfc() == -1) {
                     if (nodes.get(i) == finishNode) {
                         track.push(nodes.indexOf(finishNode));
-                        for (Integer integer :
-                                track) {
-                            result += "" + (integer+1);
+                        result += (track.get(0)+1);
+                        for (int j = 1; j < track.size(); j++) {
+                            result += "-" + (track.get(j) + 1);
                         }
                         return result;
                     } else {
@@ -97,6 +99,44 @@ public class NonOrientedGraph extends Graph {
             if (track.isEmpty())
                 return null;
         }
+    }
+
+    public String getPathWidth (String start, String finish) {
+        reset();
+        int bfc = 0;
+        String result = "";
+        Queue<Integer> track = new LinkedList<>();
+        for (int i = 0; i < adjacentMatrix.length; i++) {
+            nodes.add(new Node("" + (i + 1)));
+        }
+
+        Node startNode = func.getNode(start, nodes);
+        Node finishNode = func.getNode(finish, nodes);
+
+        startNode.setBfc(bfc++);
+        track.add(nodes.indexOf(startNode));
+        while (true) {
+            for (int i = 0; i < adjacentMatrix.length; i++) {
+                if (adjacentMatrix[track.peek()][i] == 1 && nodes.get(i).getBfc() == -1) {
+                    if (nodes.get(i) == finishNode) {
+                        track.add(nodes.indexOf(finishNode));
+                        result += (track.poll()+1);
+                        for (int j = 1; j < track.size(); j++) {
+                            result += "-" + (track.poll() + 1);
+                        }
+                        return result;
+                    } else {
+                        nodes.get(i).setBfc(bfc++);
+                        track.add(nodes.indexOf(nodes.get(i)));
+                    }
+                }
+            }
+
+            track.poll();
+            if (track.isEmpty())
+                return null;
+        }
+
     }
 
 
