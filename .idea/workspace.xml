@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="acabdfb3-6590-456c-87f6-5f558cb1b163" name="Default" comment="Finished OrientedGraph">
+    <list default="true" id="acabdfb3-6590-456c-87f6-5f558cb1b163" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/GraphPathFinding/Graphs/NonOrientedGraph.class" afterPath="$PROJECT_DIR$/out/production/GraphPathFinding/Graphs/NonOrientedGraph.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/GraphPathFinding/Tests/NonOrientedGraphTest.class" afterPath="$PROJECT_DIR$/out/production/GraphPathFinding/Tests/NonOrientedGraphTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Graphs/NonOrientedGraph.java" afterPath="$PROJECT_DIR$/src/Graphs/NonOrientedGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Tests/NonOrientedGraphTest.java" afterPath="$PROJECT_DIR$/src/Tests/NonOrientedGraphTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -709,7 +709,14 @@
       <option name="project" value="LOCAL" />
       <updated>1497433176892</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Finished OrientedGraph">
+      <created>1497998118261</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1497998118261</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
