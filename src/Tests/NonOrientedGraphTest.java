@@ -55,6 +55,27 @@ class NonOrientedGraphTest {
                                                                     {1,0,1,1},
                                                                     {0,1,1,1},
                                                                     {1,1,1,1}});
-        assertEquals("1-4", graph.getPathWidth("1", "4"));
+        assertEquals("1-2-4", graph.getPathWidth("1", "4"));
+    }
+
+    @Test
+    void getPathWaveAlgorithmTest() throws AdjacentMatrixCreationExeption {
+        NonOrientedGraph graph = new NonOrientedGraph(new int[][]{  {0,1,0,1},
+                                                                    {1,0,1,1},
+                                                                    {0,1,1,1},
+                                                                    {1,1,1,1}});
+        assertEquals("1-4", graph.getPathWaveAlgorithm("1", "4"));
+
+        NonOrientedGraph graph1 = new NonOrientedGraph(
+                "" +
+                        "0 1 1 0 0 0 0 1\n" +
+                        "1 0 0 1 0 0 0 0\n" +
+                        "1 0 0 0 1 0 0 0\n" +
+                        "0 1 0 0 0 0 1 0\n" +
+                        "0 0 1 0 0 1 0 0\n" +
+                        "0 0 0 0 1 0 1 0\n" +
+                        "0 0 0 1 0 1 0 1\n" +
+                        "1 0 0 0 0 0 1 0");
+        assertEquals("1-3-5", graph1.getPathWaveAlgorithm("1", "5"));
     }
 }

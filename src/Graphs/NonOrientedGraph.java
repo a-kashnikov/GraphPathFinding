@@ -4,6 +4,7 @@ import Exeptions.AdjacentMatrixCreationExeption;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -121,7 +122,8 @@ public class NonOrientedGraph extends Graph {
                     if (nodes.get(i) == finishNode) {
                         track.add(nodes.indexOf(finishNode));
                         result += (track.poll()+1);
-                        for (int j = 1; j < track.size(); j++) {
+                        int size = track.size();
+                        for (int j = 0; j < size; j++) {
                             result += "-" + (track.poll() + 1);
                         }
                         return result;
@@ -137,6 +139,74 @@ public class NonOrientedGraph extends Graph {
                 return null;
         }
 
+    }
+
+    public String getPathWaveAlgorithm (String start, String finish){
+        reset();
+        int bfc = 0;
+        String result = "";
+        Queue<Integer> track = new LinkedList<>();
+        for (int i = 0; i < adjacentMatrix.length; i++) {
+            nodes.add(new Node("" + (i + 1)));
+        }
+
+        Node startNode = func.getNode(start, nodes);
+        Node finishNode = func.getNode(finish, nodes);
+
+        startNode.setBfc(bfc++);
+        track.add(nodes.indexOf(startNode));
+        while (true) {
+            for (int i = 0; i < adjacentMatrix.length; i++) {
+                if (adjacentMatrix[track.peek()][i] == 1 && nodes.get(i).getBfc() == -1) {
+                    if (nodes.get(i) == finishNode) {
+                        Stack <Integer> stack = new Stack<>();
+                        stack.push(nodes.indexOf(finishNode));
+
+                        label:
+                        while (true) {
+                            ArrayList <Node> adjNodes = new ArrayList<>();
+                            for (int j = 0; j <adjacentMatrix.length ; j++) {
+                                if (adjacentMatrix[stack.peek()][j] == 1) {
+                                    Node currentNode = nodes.get(j);
+                                    if (currentNode == startNode) {
+                                        stack.push(j);
+                                        break label;
+                                    }
+                                    adjNodes.add(nodes.get(j));
+                                }
+                            }
+                            int min = adjNodes.get(0).getBfc();
+                            for (Node n:
+                                    adjNodes) {
+                                if(n.getBfc()<min&&n.getBfc()!=-1)
+                                    min = n.getBfc();
+                            }
+                            for (Node n:
+                                 adjNodes) {
+                                if(n.getBfc()==min){
+                                    stack.push(Integer.parseInt(n.getName())-1);
+                                    break;
+                                }
+                            }
+
+                        }
+                        result += (stack.pop()+1);
+                        int size = stack.size();
+                        for (int j = 0; j < size; j++) {
+                            result += "-" + (stack.pop() + 1);
+                        }
+                        return result;
+                    } else {
+                        nodes.get(i).setBfc(bfc);
+                        track.add(nodes.indexOf(nodes.get(i)));
+                    }
+                }
+            }
+            bfc++;
+            track.poll();
+            if (track.isEmpty())
+                return null;
+        }
     }
 
 
