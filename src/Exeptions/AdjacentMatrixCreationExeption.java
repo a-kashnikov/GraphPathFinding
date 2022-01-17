@@ -8,6 +8,6 @@ public class AdjacentMatrixCreationExeption extends Exception {
     }
 
     public AdjacentMatrixCreationExeption(String message) {
-        super(message);
+        super(message + "");
     }
 }
